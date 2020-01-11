@@ -43,3 +43,35 @@ Print the answer as a part of a message::
 to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
+
+def bangalore_call(call):
+    return call[0][0:5] == '(080)'
+
+
+def extract_area_code(call):
+    call_other_interloc = call[1]
+
+    if call_other_interloc[:2] == '(0':  
+        return call_other_interloc.split(sep=')')[0] + ')'
+
+    if call_other_interloc[:3] == '140':  
+        return call_other_interloc[:3]
+
+    # Mobile 
+    else:  
+        return call_other_interloc[:4]
+
+
+if __name__ == '__main__':
+    bng_called_prefix = []
+    # Part A
+    for call in calls:
+        if bangalore_call(call):
+            bng_called_prefix.append(extract_area_code(call))
+
+    bng_called_prefix_resum = list(set(bng_called_prefix))
+    bng_called_prefix_resum.sort()
+
+    print("\n The numbers called by people in Bangalore have codes:")
+    for related_prefix in bng_called_prefix_resum:
+        print(related_prefix)
