@@ -75,3 +75,12 @@ if __name__ == '__main__':
     print("\n The numbers called by people in Bangalore have codes:")
     for related_prefix in bng_called_prefix_resum:
         print(related_prefix)
+
+    # Part B
+    count = 0
+    for call_prefix in bng_called_prefix:
+        if call_prefix == "(080)":
+            count += 1
+
+    print("\n {} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(
+       round(count/len(bng_called_prefix)*100, 2)))
